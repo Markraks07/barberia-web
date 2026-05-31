@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Barberia Cruz</title>
+</head>
+
+<body>
+    <header>
+        <img src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-barbershop-logo-png-image_8090194.png"
+            alt="Logo" class="logo">
+        
+        <button class="hamburguesa" id="menu-hamburguesa">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="inicio">
+        <div class="hero">
+            <h1>Bienvenido a Barberia Cruz</h1>
+            <p>Tu estilo, nuestra pasión. En Barberia Cruz, ofrecemos cortes de cabello y afeitados de alta calidad para
+                que siempre luzcas impecable.</p>
+            <a href="#modal-reserva" class="btn">Reservar cita</a>
+            <a href="#servicios" class="btn">Ver servicios</a>
+        </div>
+    </section>
+    <section id="servicios">
+        <h2>Nuestros Servicios</h2>
+        <div class="servicios-box">
+            <div class="servicio-card">
+                <div class="servicio-icon">✂️</div>
+                <h3>Corte de Cabello</h3>
+                <p>Corte tradicional con precisión y atención al detalle.</p>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">🧔</div>
+                <h3>Afeitado</h3>
+                <p>Afeitado de alta calidad con productos de primera.</p>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">💈</div>
+                <h3>Tinte y Color</h3>
+                <p>Tratamientos de tinte y color de alta calidad.</p>
+            </div>
+            <div class="servicio-card">
+                <div class="servicio-icon">💇</div>
+                <h3>Peinado y estilización</h3>
+                <p>Peinados y estilizaciones de alta calidad para realzar tu estilo.</p>
+            </div>
+        </div>
+    </section>
+    <section id="galeria">
+        <h2>Nuestra Galería de Trabajos</h2>
+        <div class="galeria-box">
+            <div class="galeria-item">
+                <img src="https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZvdG9zJTIwZGUlMjBiYXJiZXJpYXxlbnwwfHwwfHx8MA%3D%3D"
+                    alt="Corte de cabello">
+            </div>
+            <div class="galeria-item">
+                <img src="https://plus.unsplash.com/premium_photo-1661270415179-f7bcff006edb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Zm90b3MlMjBkZSUyMGJhcmJlcmlhJTIwYWZlaXRhZG98ZW58MHx8MHx8fDA%3D"
+                    alt="Afeitado">
+            </div>
+            <div class="galeria-item">
+                <img src="https://images.unsplash.com/photo-1571454870742-43c314f3a81a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZvdG9zJTIwZGUlMjBiYXJiZXJpYSUyMHRlJUMzJUIxaWRvfGVufDB8fDB8fHww"
+                    alt="Tinte y color">
+            </div>
+            <div class="galeria-item">
+                <img src="https://plus.unsplash.com/premium_photo-1661288502656-7265af3e6b23?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGZvdG9zJTIwZGUlMjBiYXJiZXJpYSUyMHBlaW5hZG98ZW58MHx8MHx8fDA%3D"
+                    alt="Peinado y estilización">
+            </div>
+        </div>
+    </section>
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="contacto-content">
+            <div class="contacto-info">
+                <p><strong>Dirección:</strong> Calle Principal 123, Ciudad</p>
+                <p><strong>Teléfono:</strong> +1 234 567 890</p>
+                <p><strong>Email:</strong> info@barberiacruz.com</p>
+                <p><strong>Horario:</strong> Lunes a Sábado: 9:00 AM - 7:00 PM</p>
+            </div>
+            <form id="formulario-contacto">
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                <input type="email" id="email" name="email" placeholder="Tu email" required>
+                <input type="tel" id="telefono" name="telefono" placeholder="Tu teléfono" required>
+                <textarea id="mensaje" name="mensaje" placeholder="Tu mensaje" required></textarea>
+                <button class="btn" type="submit">Enviar</button>
+                <div class="form-message" id="mensaje-respuesta"></div>
+            </form>
+        </div>
+    </section>
+    <!-- MODAL RESERVAR CITA -->
+    <div id="modal-reserva" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Reservar Cita</h2>
+            <form id="formulario-reserva">
+                <label for="nombre-reserva">Nombre *</label>
+                <input type="text" id="nombre-reserva" name="nombre-reserva" placeholder="Tu nombre" required>
+                <label for="telefono-reserva">Teléfono *</label>
+                <input type="tel" id="telefono-reserva" name="telefono-reserva" placeholder="Tu teléfono" required>
+                <label for="fecha-reserva">Fecha *</label>
+                <input type="date" id="fecha-reserva" name="fecha" required>
+                <label for="hora-reserva">Hora *</label>
+                <select id="hora-reserva" name="hora" required>
+                    <option value="">Selecciona una hora</option>
+                    <option value="09:00">09:00 AM</option>
+                    <option value="09:30">09:30 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="10:30">10:30 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="11:30">11:30 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="12:30">12:30 PM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="14:30">2:30 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="15:30">3:30 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                    <option value="16:30">4:30 PM</option>
+                    <option value="17:00">5:00 PM</option>
+                    <option value="17:30">5:30 PM</option>
+                    <option value="18:00">6:00 PM</option>
+                    <option value="18:30">6:30 PM</option>
+                </select>
+                <label for="barbero">Barbero *</label>
+                <select id="barbero" name="barbero" required>
+                    <option value="">Selecciona un barbero</option>
+                    <option value="juan">Juan</option>
+                    <option value="carlos">Carlos</option>
+                    <option value="miguel">Miguel</option>
+                </select>
+                <button class="btn" type="submit">Confirmar Reserva</button>
+                <div class="form-message" id="mensaje-respuesta"></div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Barberia Cruz. Todos los derechos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
