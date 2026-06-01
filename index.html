@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Barberia Cruz - Gestión Premium</title>
+</head>
+
+<body>
+    <header>
+        <img src="https://png.pngtree.com/png-clipart/20220616/original/pngtree-barbershop-logo-png-image_8090194.png"
+            alt="Logo" class="logo">
+        
+        <button class="hamburguesa" id="menu-hamburguesa">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#" id="btn-abrir-login" class="nav-admin-link">🔑 Panel Personal</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- VISTA PÚBLICA DE LA WEB -->
+    <div id="vista-web">
+        <section id="inicio">
+            <div class="hero">
+                <h1>Bienvenido a Barberia Cruz</h1>
+                <p>Tu estilo, nuestra pasión. Cortes de autor y cuidado clásico con gestión de reservas automatizada.</p>
+                <a href="#modal-reserva" class="btn" id="btn-abrir-reserva">Reservar cita online</a>
+            </div>
+        </section>
+        
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <div class="servicios-box" id="contenedor-servicios-web"></div>
+        </section>
+        
+        <section id="galeria">
+            <h2>Galería del Local</h2>
+            <div class="galeria-box">
+                <div class="galeria-item"><img src="https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?w=500" alt="Corte"></div>
+                <div class="galeria-item"><img src="https://plus.unsplash.com/premium_photo-1661270415179-f7bcff006edb?w=500" alt="Afeitado"></div>
+                <div class="galeria-item"><img src="https://images.unsplash.com/photo-1571454870742-43c314f3a81a?w=500" alt="Color"></div>
+            </div>
+        </section>
+        
+        <section id="contacto">
+            <h2>Contacto y Ubicación</h2>
+            <div class="contacto-content">
+                <div class="contacto-info">
+                    <p><strong>Dirección:</strong> Av. Principal, Barberà del Vallès</p>
+                    <p><strong>Horarios del Centro:</strong> Configurados dinámicamente en tiempo real.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PANTALLA LOGIN INTERNA -->
+    <div id="modal-login" class="modal">
+        <div class="modal-content login-box">
+            <span class="close-login">&times;</span>
+            <h2>Acceso Profesional</h2>
+            <form id="formulario-login">
+                <input type="text" id="login-usuario" placeholder="Usuario" required>
+                <input type="password" id="login-password" placeholder="Contraseña" required>
+                <button type="submit" class="btn">Entrar al Sistema</button>
+                <div id="login-error" class="error-msg"></div>
+            </form>
+            <p class="demo-hint">💡 Demo: Jefe (jefe / 123) | Barbero (juan / 123)</p>
+        </div>
+    </div>
+
+    <!-- PANEL DE ADMINISTRACIÓN AVANZADO -->
+    <section id="panel-admin" style="display: none;">
+        <div class="admin-header">
+            <div>
+                <h2>Panel Interno</h2>
+                <p id="saludo-usuario" style="color: var(--primary); font-weight: bold;"></p>
+            </div>
+            <button id="btn-cerrar-admin" class="btn-eliminar">Cerrar Sesión</button>
+        </div>
+        
+        <div class="admin-tabs">
+            <button class="tab-btn activo" data-target="tab-dashboard" id="tab-link-dashboard">📊 Cuadro de Mando</button>
+            <button class="tab-btn" data-target="tab-reservas">📅 Agenda de Citas</button>
+            <button class="tab-btn solo-jefe" data-target="tab-crm">💎 Radar VIP (CRM)</button>
+            <button class="tab-btn solo-jefe" data-target="tab-servicios">✂️ Servicios</button>
+            <button class="tab-btn solo-jefe" data-target="tab-empleados">👥 Plantilla</button>
+            <button class="tab-btn solo-jefe" data-target="tab-horarios">⚙️ Horarios</button>
+            <button class="tab-btn solo-jefe" data-target="tab-historial">📜 Log</button>
+        </div>
+
+        <!-- 1. TAB DASHBOARD -->
+        <div id="tab-dashboard" class="tab-content activo">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Caja Estimada (Pendiente + Completado)</h3>
+                    <p id="stat-ingresos">0€</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Total Reservas</h3>
+                    <p id="stat-citas">0</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Ticket Medio</h3>
+                    <p id="stat-ticket">0€</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Servicio Líder</h3>
+                    <p id="stat-estrella">-</p>
+                </div>
+            </div>
+            <div class="charts-container">
+                <div class="chart-box">
+                    <h3>Rendimiento por Barbero (Caja generada)</h3>
+                    <div id="grafico-barberos" class="custom-chart"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. TAB RESERVAS (AGENDA CON MENÚ 3 PUNTOS) -->
+        <div id="tab-reservas" class="tab-content">
+            <h3>Agenda Completa de Turnos</h3>
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Fecha</th><th>Hora</th><th>Cliente</th><th>Teléfono</th><th>Barbero</th><th>Servicio</th><th>Estado</th><th>Acciones</th></tr>
+                    </thead>
+                    <tbody id="tabla-reservas"></tbody>
+                </table>
+            </div>
+            
+            <div id="info-horario-agenda" class="info-horario-box"></div>
+        </div>
+
+        <!-- 3. TAB CRM Y FIDELIZACIÓN -->
+        <div id="tab-crm" class="tab-content">
+            <h3>Fidelización y Control de Inasistencias</h3>
+            <p class="hint">Identifica a tus mejores clientes y bloquea a los que reservan y no aparecen (Lista Negra automática tras 2 faltas).</p>
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead><tr><th>Nombre</th><th>Teléfono</th><th>Nº Visitas</th><th>Total Gastado</th><th>Faltas 👻</th><th>Nivel</th></tr></thead>
+                    <tbody id="tabla-crm"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 4. TAB SERVICIOS -->
+        <div id="tab-servicios" class="tab-content">
+            <h3>Añadir o Modificar Servicios</h3>
+            <form id="form-nuevo-servicio" class="admin-form">
+                <input type="text" id="nuevo-servicio-nombre" placeholder="Nombre (Ej: Degradado)" required>
+                <input type="number" id="nuevo-servicio-precio" placeholder="Precio (€)" required>
+                <button type="submit" class="btn">Guardar</button>
+            </form>
+            <div class="table-responsive">
+                <table class="admin-table"><tbody id="tabla-servicios"></tbody></table>
+            </div>
+        </div>
+
+        <!-- 5. TAB EMPLEADOS -->
+        <div id="tab-empleados" class="tab-content">
+            <h3>Plantilla y Accesos App</h3>
+            <form id="form-nuevo-empleado" class="admin-form">
+                <input type="text" id="emp-nombre" placeholder="Nombre Comercial (Ej: Carlos)" required>
+                <input type="text" id="emp-usuario" placeholder="Usuario Login" required>
+                <input type="password" id="emp-pass" placeholder="Contraseña" required>
+                <select id="emp-rol">
+                    <option value="barbero">Rol: Barbero Estándar</option>
+                    <option value="jefe">Rol: Jefe / Propietario</option>
+                </select>
+                <button type="submit" class="btn">Dar de Alta</button>
+            </form>
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead><tr><th>Nombre</th><th>Usuario</th><th>Rol</th><th>Acciones</th></tr></thead>
+                    <tbody id="tabla-empleados"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 6. TAB HORARIOS DE APERTURA -->
+        <div id="tab-horarios" class="tab-content">
+            <h3>Configuración de Horas y Días Laborables</h3>
+            <div class="horarios-manager-grid">
+                <div class="horarios-box-conf">
+                    <h4>🗓️ Días Abiertos</h4>
+                    <div id="wrapper-dias-check">
+                        <label><input type="checkbox" class="check-dia" value="1"> Lunes</label>
+                        <label><input type="checkbox" class="check-dia" value="2"> Martes</label>
+                        <label><input type="checkbox" class="check-dia" value="3"> Miércoles</label>
+                        <label><input type="checkbox" class="check-dia" value="4"> Jueves</label>
+                        <label><input type="checkbox" class="check-dia" value="5"> Viernes</label>
+                        <label><input type="checkbox" class="check-dia" value="6"> Sábado</label>
+                        <label><input type="checkbox" class="check-dia" value="0"> Domingo</label>
+                    </div>
+                </div>
+                <div class="horarios-box-conf">
+                    <h4>⏰ Franjas Horarias Disponibles</h4>
+                    <div id="wrapper-horas-check" class="grid-horas-checks"></div>
+                </div>
+            </div>
+            <button id="btn-guardar-horario" class="btn" style="margin-top:20px;">Guardar Configuración</button>
+        </div>
+
+        <!-- 7. TAB HISTORIAL LOG -->
+        <div id="tab-historial" class="tab-content">
+            <h3>Auditoría de Operaciones en la Web</h3>
+            <div class="log-container" id="log-actividad"></div>
+        </div>
+    </section>
+
+    <!-- MODAL RESERVAR CITA CLIENTE -->
+    <div id="modal-reserva" class="modal">
+        <div class="modal-content">
+            <span class="close-reserva">&times;</span>
+            <h2>Reserva tu cita al instante</h2>
+            <form id="formulario-reserva">
+                <label>Nombre Completo</label>
+                <input type="text" id="nombre-reserva" required>
+                
+                <label>Teléfono de Contacto (Ej: 600123456)</label>
+                <input type="tel" id="telefono-reserva" required>
+                
+                <label>Selecciona el Día</label>
+                <input type="date" id="fecha-reserva" required>
+                <div id="error-dia-cerrado" class="error-msg"></div>
+                
+                <label>Hora Disponible</label>
+                <select id="hora-reserva" required><option value="">Elige un día primero</option></select>
+                
+                <label>Servicio deseado</label>
+                <select id="servicio-reserva" required></select>
+
+                <label>Tu Barbero de Confianza</label>
+                <select id="barbero-reserva" required></select>
+                
+                <button class="btn" type="submit" id="btn-confirmar-reserva-final">Confirmar Turno</button>
+                <div id="mensaje-respuesta-reserva"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Barberia Cruz. Sistema de Demostración Comercial Inteligente.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
